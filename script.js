@@ -139,8 +139,8 @@ function addEntry() {
   calculateExpense();
   calculateBudget();
   
-  const newDeleteBtn = list.lastElementChild.querySelector('.deleteBtn');
-  newDeleteBtn.addEventListener('click', deleteEntry);
+  // const newDeleteBtn = list.lastElementChild.querySelector('.deleteBtn');
+  // newDeleteBtn.addEventListener('click', deleteEntry);
   // deleteBtn.forEach((incomeList) => {
   //   button.addEventListener("click", deleteEntry);
   // });
