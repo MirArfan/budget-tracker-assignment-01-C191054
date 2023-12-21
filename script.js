@@ -9,7 +9,8 @@ const expenseList = document.getElementById("expense-list");
 const totalIncome = document.getElementById("total-income");
 const totalExpense = document.getElementById("total-expense");
 const remainingBudget = document.getElementById("Available-Budget");
-const deleteBtn = document.getElementById("deleteBtn");
+//const deleteBtn = document.getElementById("deleteBtn");
+const deleteBtn = document.querySelectorAll(".deleteBtn");
 
 
 
@@ -75,14 +76,20 @@ calculateBudget();
 //     const listItem = event.target.closest("li"); // Find the closest parent li element
 //     listItem.remove();
 // }
+
+
 function deleteEntry() {
-  const listItem = event.target.closest("li");
+  const listItem = event.target.closest("li"); 
+  console.log("listItem : " +listItem);
   listItem.remove();
+
   calculateIncome();
   calculateExpense();
   calculateBudget();
 }
-
+deleteBtn.forEach(btn => {
+  btn.addEventListener("click", deleteEntry);
+});
 function addEntry() {
   const type = selectInput.value;
   const description = descriptionInput.value;
@@ -113,6 +120,8 @@ function addEntry() {
         <div>
           <span id="deleteItem" class="${colorClass}">${sign}${formatMoney(value)}</span>
           <span
+          id="deleteBtn" 
+          onclick="deleteEntry()"
             class="ml-2 hidden cursor-pointer font-medium text-red-500 group-hover:inline-block"
           >
             Delete
@@ -129,10 +138,12 @@ function addEntry() {
   calculateIncome();
   calculateExpense();
   calculateBudget();
-
-  deleteBtn.forEach((incomeList) => {
-    button.addEventListener("click", deleteEntry);
-  });
+  
+  const newDeleteBtn = list.lastElementChild.querySelector('.deleteBtn');
+  newDeleteBtn.addEventListener('click', deleteEntry);
+  // deleteBtn.forEach((incomeList) => {
+  //   button.addEventListener("click", deleteEntry);
+  // });
 }
 
 addExpenseButton.addEventListener("click", addEntry);
